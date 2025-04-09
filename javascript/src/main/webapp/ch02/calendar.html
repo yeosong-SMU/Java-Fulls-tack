@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+date = new Date();
+y = date.getFullYear();
+m = date.getMonth();
+d = date.getDate();
+start_date = new Date(y, m, 1);
+start_day = start_date.getDay();  //요일코드(일~토, 0~6)
+month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+if(y%4 == 0 && y % 100 != 0 || y % 400 == 0){
+	month_days[1] = 29;
+}
+last_date = month_days[m];
+row = Math.ceil((start_day + lasst_date) / 7);
+document.write(`<h2>${y}.${m+1}</h2>`);
+cal = "<table border='1'>";
+cal += "<tr>";
+cal += "<th><span style = 'color:red'>일</span></th>";
+cal += "<th></th>";
+</script>
+</head>
+<body>
+
+</body>
+</html>
