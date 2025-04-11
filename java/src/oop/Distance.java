@@ -1,5 +1,7 @@
 package oop;
 
+import java.util.Scanner;
+
 public class Distance {
 	private int x1, x2, y1, y2;
 	private double distance;
@@ -20,4 +22,29 @@ public class Distance {
 		return y2;
 	}
 
+	public double getDistance(int x1, int y1, int x2, int y2) {
+		int x = x2 - x1;
+		int y = y2 - y1;
+		distance = Math.sqrt(x * x + y * y);
+		return distance;
+	}
+
+	public void input() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("x1:");
+		x1 = sc.nextInt();
+		System.out.println("y1:");
+		y1 = sc.nextInt();
+		System.out.println("x2:");
+		x2 = sc.nextInt();
+		System.out.println("y2:");
+		y2 = sc.nextInt();
+	}
+
+	public static void main(String[] args) {
+		Distance d = new Distance();
+		d.input();
+		double result = d.getDistance(d.getX1(), d.getX1(), d.getX2(), d.getY2());
+		System.out.println("결과: " + String.format("%7.1f", result));
+	}
 }
