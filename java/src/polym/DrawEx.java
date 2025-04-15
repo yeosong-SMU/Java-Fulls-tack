@@ -8,7 +8,7 @@ public class DrawEx {
 		r.draw();
 		Circle c = new Circle();
 		c.draw();
-		Figure f = new Triangle();
+		Figure f = new Triangle(); // 좌변:상위 우변:하위
 		f.draw();
 		f = new Rectangle();
 		f.draw();

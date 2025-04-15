@@ -12,7 +12,7 @@ public class CalendarEx {
 		System.out.println(cal.get(Calendar.HOUR_OF_DAY)); // 24 Hours
 		System.out.println(cal.get(Calendar.MINUTE));
 		System.out.println(cal.get(Calendar.SECOND));
-		System.out.println(cal.get(Calendar.AM_PM));
+		System.out.println(cal.get(Calendar.AM_PM)); // 0:am 1:pm
 		if (cal.get(Calendar.AM_PM) == 0) {
 			System.out.println("am");
 		} else {
