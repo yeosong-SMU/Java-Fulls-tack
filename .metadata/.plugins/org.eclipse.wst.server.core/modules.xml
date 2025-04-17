@@ -2,4 +2,5 @@
 <modules>
   <module moduleId="org.eclipse.jst.jee.server:html" serverId="Tomcat v11.0 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:javascript" serverId="Tomcat v11.0 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:javaweb" serverId="Tomcat v11.0 Server at localhost"/>
 </modules>
