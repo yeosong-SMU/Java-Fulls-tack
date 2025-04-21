@@ -8,8 +8,8 @@
 </head>
 <body>
 <%
-String name="김철수";
-int year=1990;
+String name=request.getParameter("name");
+int year=Integer.parseInt(request.getParameter("year"));
 int age = 2025 - year;
 %>
 이름: <%=name %><br>
