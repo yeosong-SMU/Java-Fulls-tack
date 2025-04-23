@@ -128,15 +128,55 @@ public class MemberJoin extends JFrame {
 				ResultSet rs = null;
 				try {
 					FileInputStream fis = null;
-					fis = new FileInputStream("c:/work/db.prop");
+					fis = new FileInputStream("c:/work/mysql.prop");
+					Properties prop = new Properties();
+					prop.load(fis);
+					String driver = prop.getProperty("driver");
+					String url = prop.getProperty("url");
+					String id = prop.getProperty("id");
+					String password = prop.getProperty("password");
+					conn = DriverManager.getConnection(url, id, password);
+					Class.forName(driver);
+
+					String userid = tfUserid.getText();
+					String sql = "select count(*) from member where userid=?";
+					stmt = conn.prepareStatement(sql);
+					stmt.setString(1, userid);
+					rs = stmt.executeQuery();
+					if (rs.next()) {
+						int count = rs.getInt(1);
+						if (count == 0) {
+							JOptionPane.showMessageDialog(MemberJoin.this, "사용가능한 아이디입니다.");
+							btnSave.setEnabled(true);
+						} else {
+							JOptionPane.showMessageDialog(MemberJoin.this, "이미 사용중인 아이디입니다.");
+							btnSave.setEnabled(false);
+						}
+					}
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				} finally {
-
+					try {
+						if (stmt != null)
+							stmt.close();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+					try {
+						if (conn != null)
+							conn.close();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
 				}
 			}
 		});
+		btnCheck.setBounds(227, 35, 97, 23);
+		add(btnCheck);
 
+		setSize(350, 280);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public static void main(String[] args) {

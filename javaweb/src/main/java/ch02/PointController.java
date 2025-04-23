@@ -1,14 +1,17 @@
 package ch02;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/ch02_servlet/point.do")
+@WebServlet("/servlet/point.do")
 public class PointController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -20,5 +23,24 @@ public class PointController extends HttpServlet {
 		int total = kor + eng + mat;
 		double average = total / 3.0;
 
+		Map<String, Object> map = new HashMap<>();
+		map.put("name", name);
+		map.put("kor", kor);
+		map.put("eng", eng);
+		map.put("mat", mat);
+		map.put("total", total);
+		map.put("average", average);
+
+		request.setAttribute("point", map);
+
+		String page = "/ch02/point_result.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(page);
+		rd.forward(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
 }
