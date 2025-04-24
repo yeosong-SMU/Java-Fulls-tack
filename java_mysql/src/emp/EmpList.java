@@ -2,12 +2,15 @@ package emp;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -131,5 +134,88 @@ public class EmpList extends JFrame {
 		lblSearch.setBounds(12, 150, 137, 15);
 		add(lblSearch);
 
+		tfSearch = new JTextField();
+		tfSearch.setBounds(151, 147, 110, 21);
+		add(tfSearch);
+		tfSearch.setColumns(10);
+
+		JButton btnSearch = new JButton("검색");
+		btnSearch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				search();
+			}
+		});
+		btnSearch.setBounds(273, 146, 77, 23);
+		add(btnSearch);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 183, 338, 212);
+		add(scrollPane);
+
+		dao = new EmpDAO();
+		cols = new Vector();
+		cols.add("사원번호");
+		cols.add("사 원 명");
+		cols.add("입사일자");
+		cols.add("연 봉");
+		list();
+		table = new JTable(model);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int idx = table.getSelectedRow();
+				tfEmpno.setEditable(false);
+				tfEmpno.setText(table.getValueAt(idx, 0) + "");
+				tfEname.setText(table.getValueAt(idx, 1) + "");
+				tfHiredate.setText(table.getValueAt(idx, 2) + "");
+				tfSal.setText(table.getValueAt(idx, 3) + "");
+			}
+		});
+		scrollPane.setViewportView(table);
+
+		setSize(400, 500);
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+
+	public void input() {
+		int empno = Integer.parseInt(tfEmpno.getText());
+		String ename = tfEname.getText();
+		String hiredate = tfHiredate.getText();
+		int sal = Integer.parseInt(tfSal.getText());
+		dto = new EmpDTO(empno, ename, hiredate, sal);
+	}
+
+	public void clear() {
+		tfEmpno.setText("");
+		tfEname.setText("");
+		tfHiredate.setText("");
+		tfSal.setText("");
+		tfEmpno.requestFocus();
+		tfEmpno.setEditable(true);
+	}
+
+	public void search() {
+		String name = tfSearch.getText();
+		model = new DefaultTableModel(dao.searchEmp(name), cols) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table.setModel(model);
+	}
+
+	public void list() {
+		model = new DefaultTableModel(dao.searchEmp(""), cols) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+	}
+
+	public static void main(String[] args) {
+		new EmpList();
 	}
 }

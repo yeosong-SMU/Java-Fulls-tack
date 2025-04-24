@@ -38,7 +38,7 @@ public class ManageCar {
 	void list() {
 		List<CarDTO> items = dao.list_car();
 		System.out.println("차량번호\t\t연도\t제조사\t타입\t연비");
-		System.out.println("==================================================");
+		System.out.println("============================================");
 		for (CarDTO dto : items) {
 			System.out.print(dto.getCar_no() + "\t\t");
 			System.out.print(dto.getYear() + "\t");
