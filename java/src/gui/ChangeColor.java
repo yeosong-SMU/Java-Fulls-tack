@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -69,8 +70,24 @@ public class ChangeColor extends JFrame implements ItemListener {
 		public void paint(Graphics g) {
 			super.paint(g);
 			switch (color) {
-
+			case "default":
+				g.setColor(Color.black);
+				break;
+			case "RED":
+				g.setColor(Color.red);
+				break;
+			case "BLUE":
+				g.setColor(Color.blue);
+				break;
+			case "GREEN":
+				g.setColor(Color.green);
+				break;
 			}
+			g.fillOval(80, 30, 120, 80);
 		}
+	}
+
+	public static void main(String[] args) {
+		new ChangeColor();
 	}
 }
