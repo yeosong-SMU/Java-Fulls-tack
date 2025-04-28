@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Panel;
 import java.awt.Toolkit;
@@ -53,7 +54,50 @@ public class ImageEx extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton btn = (JButton) e.getSource();
+		JButton btn = (JButton) e.getSource(); // 클릭한 버튼의 id가 전달된다.
+		if (btn == btnNormal) {
+			command = SHOW_NORM;
+		} else if (btn == btnPart) {
+			command = SHOW_PART;
+		} else if (btn == btnScale) {
+			command = SHOW_SCALE;
+		} else if (btn == btnHori) {
+			command = SHOW_HORI;
+		} else if (btn == btnVert) {
+			command = SHOW_VERT;
+		} else if (btn == btnAll) {
+			command = SHOW_ALL;
+		}
+		repaint();
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		d = p.getSize();
+		switch (command) {
+		case SHOW_NORM:
+			g.drawImage(curImg, 0, 0, this);
+			break;
+		case SHOW_PART:
+			g.drawImage(curImg, 0, d.height, 100, d.height + 100, 20, 20, 120, 120, this);
+			break;
+		case SHOW_SCALE:
+			g.drawImage(curImg, 0, d.height, curImg.getWidth(this) / 2, d.height + curImg.getHeight(this) / 2, 0, 0,
+					curImg.getWidth(this), curImg.getHeight(this), this);
+			break;
+		case SHOW_HORI:
+			g.drawImage(curImg, curImg.getWidth(this), d.height, 0, curImg.getHeight(this) + d.height, 0, 0,
+					curImg.getWidth(this), curImg.getHeight(this), this);
+		case SHOW_VERT:
+			g.drawImage(curImg, 0, d.height + curImg.getHeight(this), curImg.getWidth(this), d.height, 0, 0,
+					curImg.getWidth(this), curImg.getHeight(this), this);
+			break;
+		case SHOW_ALL:
+			g.drawImage(curImg, curImg.getWidth(this), curImg.getHeight(this) + d.height, 0, d.height, 0, 0,
+					curImg.getWidth(this), curImg.getHeight(this), this);
+			break;
+		}
 	}
 
 }
