@@ -1,17 +1,26 @@
 package board;
 
 public class BoardDTO {
-	private int no;
+	private int num;
+	private String id;
 	private String title;
 	private String content;
 	private String reg_date;
 	
-	public int getNo() {
-		return no;
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
+	public String getId() {
+		return id;
 	}
 	
-	public void setNo(int no) {
-		this.no = no;
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	public String getTitle() {
@@ -41,14 +50,14 @@ public class BoardDTO {
 	public BoardDTO() {
 	}
 	
-	public BoardDTO(int no, String title, String content) {
-		this.no = no;
+	public BoardDTO(String id, String title, String content) {
+		this.id = id;
 		this.title = title;
 		this.content = content;
 	}
 
-	public BoardDTO(int no, String title, String content, String reg_date) {
-		this.no = no;
+	public BoardDTO(String id, String title, String content, String reg_date) {
+		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.reg_date = reg_date;
@@ -56,6 +65,7 @@ public class BoardDTO {
 
 	@Override
 	public String toString() {
-		return "boardDTO [no=" + no + ", title=" + title + ", content=" + content + ", reg_date=" + reg_date + "]";
+		return "BoardDTO [id=" + id + ", title=" + title + ", content=" + content + ", reg_date=" + reg_date + "]";
 	}
+	
 }

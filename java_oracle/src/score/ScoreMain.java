@@ -24,10 +24,9 @@ public class ScoreMain extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/*
-				 * SaveScore form = new SaveScore(ScoreMain.this); form.setVisible(true);
-				 * form.setLocation(200, 200);
-				 */
+				SaveScore form = new SaveScore(ScoreMain.this);
+				form.setVisible(true);
+				form.setLocation(200, 200);
 			}
 		});
 		btnAdd.setBounds(12, 24, 97, 23);
@@ -50,9 +49,8 @@ public class ScoreMain extends JFrame {
 				int mat = Integer.valueOf(table.getValueAt(idx, 4) + "");
 
 				ScoreDTO dto = new ScoreDTO(student_no, name, kor, eng, mat);
-				/*
-				 * EditScore form = new EditScore(ScoreMain.this, dto); form.setVisible(true);
-				 */
+				EditScore form = new EditScore(ScoreMain.this, dto);
+				form.setVisible(true);
 			}
 		});
 		btnEdit.setBounds(133, 24, 97, 23);

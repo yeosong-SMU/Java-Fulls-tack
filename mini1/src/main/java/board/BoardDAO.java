@@ -20,18 +20,18 @@ public class BoardDAO {
 		try {
 			conn = DB.dbConn();
 			
-			String sql = "select no, title, content, to_char(reg_date, 'yyyy-mm-dd') reg_date from board order by no";
+			String sql = "select * from board order by reg_date desc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
 				
-				int no = rs.getInt("no");
+				String id = rs.getString("id");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
 				String reg_date = rs.getString("reg_date");
 				
-				BoardDTO dto = new BoardDTO(no, title, content, reg_date);
+				BoardDTO dto = new BoardDTO(id, title, content, reg_date);
 				items.add(dto);
 				
 			}
@@ -62,10 +62,10 @@ public class BoardDAO {
 		try {
 			
 			conn = DB.dbConn();
-			String sql = "insert into board (no, title, content) values (?,?,?)";
+			String sql = "insert into board (id, title, content) values (?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, dto.getNo());
+			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getTitle());
 			pstmt.setString(3, dto.getContent());
 			pstmt.executeUpdate();
@@ -86,7 +86,7 @@ public class BoardDAO {
 		}
 	}
 	
-	public BoardDTO detail(String no) {
+	public BoardDTO detail(String id, int num) {
 		
 		BoardDTO dto = null;
 		Connection conn = null;
@@ -95,16 +95,17 @@ public class BoardDAO {
 		
 		try {
 			conn = DB.dbConn();
-			String sql = "select * from board where no=?";
+			String sql = "select * from board where id=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, no);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
 				dto = new BoardDTO();
 			}
 			
-			dto.setNo(rs.getInt("no"));
+			dto.setNum(num);
+			dto.setId(rs.getString("id"));
 			dto.setTitle(rs.getString("title"));
 			dto.setContent(rs.getString("content"));
 			dto.setReg_date(rs.getString("reg_date"));
@@ -142,11 +143,12 @@ public class BoardDAO {
 		try {
 			
 			conn = DB.dbConn();
-			String sql = "update board set title=?, content=? where no=?";
+			String sql = "update board set title=?, content=?, reg_date=sysdate where id=?";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, dto.getTitle());
 			pstmt.setString(2, dto.getContent());
+			pstmt.setString(3, dto.getId());
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -167,7 +169,7 @@ public class BoardDAO {
 		}
 	}
 	
-	public void delete(String no) {
+	public void delete(String id) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -175,10 +177,10 @@ public class BoardDAO {
 		try {
 			
 			conn = DB.dbConn();
-			String sql = "delete from member where no=?";
+			String sql = "delete from board where id=?";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, no);
+			pstmt.setString(1, id);
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {

@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 Index</title>
+<title>게시판 로그인</title>
 </head>
 <body>
-<%
-response.sendRedirect(request.getContextPath() + "/board_servlet/list.do");
-%>
+로그인 화면
 </body>
 </html>

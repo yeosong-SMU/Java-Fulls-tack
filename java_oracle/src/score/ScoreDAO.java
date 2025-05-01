@@ -115,7 +115,7 @@ public class ScoreDAO {
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Vector row = new Vector();
-				String student_no = rs.getString("sudent_no");
+				String student_no = rs.getString("student_no");
 				String name = rs.getString("name");
 				int kor = rs.getInt("kor");
 				int eng = rs.getInt("eng");

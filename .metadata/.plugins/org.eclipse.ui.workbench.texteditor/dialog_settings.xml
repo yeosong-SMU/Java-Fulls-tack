@@ -9,6 +9,8 @@
 		<item key="selection" value=""/>
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="btn"/>
+			<item value="count"/>
 			<item value="?"/>
 			<item value="setSize"/>
 			<item value="set"/>

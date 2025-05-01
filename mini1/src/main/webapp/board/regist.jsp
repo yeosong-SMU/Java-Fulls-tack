@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 Index</title>
+<title>게시판 회원가입</title>
 </head>
 <body>
-<%
-response.sendRedirect(request.getContextPath() + "/board_servlet/list.do");
-%>
+회원가입 화면
 </body>
 </html>
