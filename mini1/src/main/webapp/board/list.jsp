@@ -153,8 +153,8 @@ function view(id, clickedCell) {
 <style>
 .main-pos{
 	position: absolute;
-	left: 15%;
-	width:70%;
+	left: 20%;
+	width:60%;
 }
 .btn-r{
 	text-align: right;
@@ -163,6 +163,10 @@ function view(id, clickedCell) {
 table, td, th {
 	border-collapse: collapse;
 	border: 1px solid black;
+	height: 30px;
+}
+th{
+	height: 50px;
 }
 table{
 	width: 100%;

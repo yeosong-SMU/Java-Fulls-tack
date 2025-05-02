@@ -15,6 +15,23 @@ $(function() {
 	});
 	
 	$("#btnUpdate").click(function() {
+		let title = $("input[name='title']").val().trim();
+		let content = $("textarea[name='content']").val().trim();
+
+		if (title === "") {
+			if (confirm("제목을 입력해 주세요.")) {
+				$("input[name='title']").focus();
+			}
+			return;
+		}
+
+		if (content === "") {
+			if (confirm("내용을 입력해 주세요.")) {
+				$("textarea[name='content']").focus();
+			}
+			return;
+		}
+
 		document.form1.action = "<%=request.getContextPath()%>/board_servlet/update.do";
 		document.form1.submit();
 	});
@@ -37,8 +54,8 @@ $(function() {
 <style>
 .main-pos{
 	position: absolute;
-	left: 15%;
-	width:70%;
+	left: 20%;
+	width:60%;
 }
 .btn-r{
 	text-align: right;
@@ -47,9 +64,25 @@ $(function() {
 table, td, th {
 	border-collapse: collapse;
 	border: 1px solid black;
+	height: 30px;
 }
 table{
 	width: 100%;
+}
+td{
+	 padding-left:5px;
+}
+textarea{
+	font-size:15px;
+	height:400px; width:100%;
+	resize:none;
+	box-sizing:border-box;
+	overflow-y:auto;
+}
+input{
+	width:100%; height:100%;
+	box-sizing:border-box;
+	font-size:15px;
 }
 </style>
 </head>
@@ -59,7 +92,7 @@ table{
 	
 	<div class="btn-r">
 		<button type="button" id="btn_previous" onclick="">이전</button>
-		<button type="button" id="btnUpdate">수정</button>
+		<button type="button" id="btnUpdate">저장</button>
 		<button type="button" id="btnDelete">삭제</button>
 		<button type="button" id="btn_logout">로그 아웃</button>
 	</div>
@@ -69,26 +102,27 @@ table{
 	<form name="form1" method="post">
 	<table>
 		<tr>
-			<td>번호</td>
+			<th style="width:100px;">번호</th>
 			<td><%=dto.getNum()%></td>
 		</tr>
 	 	<tr>
-			<td>제목</td>
-			<td><input name="title" value="<%=dto.getTitle()%>"></td>
+			<th>제목</th>
+			<td style="padding:5px;"><input name="title" value="<%=dto.getTitle()%>"></td>
 	 	</tr>
 	 	<tr>
-			<td>내용</td>
-			<td><input name="content" value="<%=dto.getContent()%>" size="50"></td>
+			<th>내용</th>
+			<td style="padding:5px;"><textarea name="content"><%=dto.getContent()%></textarea></td>
 	 	</tr>
 	 	<tr>
-			<td>등록일자</td>
+			<th>등록일자</th>
 			<td><%=dto.getReg_date()%></td>
 	 	</tr>
-	 	<tr>
-			<td colspan="2" align="center">
-				<input type="hidden" name="id" value="<%=dto.getId()%>">
-			</td>
-	 	</tr>
+<!-- 	 	<tr> -->
+<!-- 			<td colspan="2" align="center"> -->
+<%-- 				<input type="hidden" name="id" value="<%=dto.getId()%>"> --%>
+<!-- 			</td> -->
+<!-- 	 	</tr> -->
+	 	<input type="hidden" name="id" value="<%=dto.getId()%>">
 	</table>
 	</form>
 </div>
