@@ -1,0 +1,2 @@
+url=jdbc:sqlite:c:/sqlite3/java.db
+driver=org.sqlite.JDBC
