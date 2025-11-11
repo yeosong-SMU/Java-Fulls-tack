@@ -1,0 +1,15 @@
+package member;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class MemberDTO {
+	private String userid;
+	private String passwd;
+	private String name;
+	private String reg_date;
+	private String address;
+	private String tel;
+}
