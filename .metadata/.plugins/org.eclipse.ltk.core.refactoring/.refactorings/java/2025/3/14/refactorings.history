@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;type.LongEX&apos; to &apos;LongEx&apos;&#x0D;&#x0A;- Original project: &apos;java&apos;&#x0D;&#x0A;- Original element: &apos;type.LongEX&apos;&#x0D;&#x0A;- Renamed element: &apos;type.LongEx&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;LongEX&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;type{LongEX.java[LongEX" matchStrategy="1" name="LongEx" qualified="false" references="true" similarDeclarations="false" stamp="1743399345002" textual="false" version="1.0"/>
+</session>
